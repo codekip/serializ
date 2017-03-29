@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -28,53 +27,12 @@ namespace testWindowsFormsApp1
             new XmlSerializer(typeof(FileList)).Serialize(stream, filelist);
 
         }
+
+
+
     }
 
-    [Serializable]
-    public class FileList
-    {
-        public List<FileInfoSerializable> filez { get; set; }
-
-        public FileList()
-        {
-            filez = new List<FileInfoSerializable>();
-        }
-
-        public void Add(FileInfoSerializable m)
-        {
-            filez.Add(m);
-        }
-    }
-
-    [Serializable]
-    public class FileInfoSerializable
-    {
-
-        private readonly FileInfo _fileInfo;
-
-        #region ~~~ Constructors ~~~
-
-        public FileInfoSerializable() { }
-
-        public FileInfoSerializable(FileInfo FileInfo) { _fileInfo = FileInfo; }
-
-        #endregion
 
 
-        #region ~~~ Properties ~~~
 
-        public string Name { get { return _fileInfo.Name; } set { } }
-
-        public string FullName { get { return _fileInfo.FullName; } set { } }
-
-        public long Length { get { return _fileInfo.Length; } set { } }
-
-        public string Extension { get { return _fileInfo.Extension; } set { } }
-
-        public DateTime LastWriteTime { get { return _fileInfo.LastWriteTime; } set { } }
-
-        public string DirectoryName { get { return _fileInfo.DirectoryName; } set { } }
-
-        #endregion
-    }
 }

@@ -46,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileGetter.cs" />
+    <Compile Include="FileInfoSerializable.cs" />
+    <Compile Include="FileList.cs" />
+    <Compile Include="FileOwnerInfo.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
