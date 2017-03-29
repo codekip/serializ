@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="TDBpath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">L:\02 Technical Database</Value>
+      <Value Profile="(Default)">L:\02 Technical Database\</Value>
     </Setting>
   </Settings>
 </SettingsFile>

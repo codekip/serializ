@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -16,56 +15,66 @@ namespace testWindowsFormsApp1
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            var x = FileGetter.FileInfoAllFiles();
+            IEnumerable<FileInfo> allfiles = FileGetter.FileInfoAllFiles();
 
-            var t = new TheFiles();
-            foreach (var file in x)
+            FileList filelist = new FileList();
+
+            foreach (var file in allfiles)
             {
-                FileInfoWrapper f = new FileInfoWrapper(file);
-                t.Add(f);
+                filelist.Add(new FileInfoSerializable(file));
             }
 
-
-            var stream = new FileStream("TDBlist.xml", FileMode.Create);
-            new XmlSerializer(typeof(FileInfoWrapper)).Serialize(stream, t);
-
-            foreach (var file in x)
-            {
-                Debug.WriteLine(file.FullName + ' ' + file.LastWriteTime);
-            }
+            var stream = new FileStream("Xmllist.xml", FileMode.Create);
+            new XmlSerializer(typeof(FileList)).Serialize(stream, filelist);
 
         }
     }
 
-    public class TheFiles
+    [Serializable]
+    public class FileList
     {
-        List<FileInfoWrapper> filez;
-        public TheFiles()
+        public List<FileInfoSerializable> filez { get; set; }
+
+        public FileList()
         {
-            filez = new List<FileInfoWrapper>();
+            filez = new List<FileInfoSerializable>();
         }
 
-        public void Add(FileInfoWrapper m)
+        public void Add(FileInfoSerializable m)
         {
             filez.Add(m);
         }
     }
 
-    public class FileInfoWrapper
+    [Serializable]
+    public class FileInfoSerializable
     {
-        private FileInfo _file;
-        public string Name { get { return _file.FullName; } }
-        public DateTime LastWrite { get { return _file.LastWriteTime; } }
-        public string Extension { get { return _file.Extension; } }
 
-        public FileInfoWrapper(FileInfo f)
-        {
-            _file = f;
-        }
+        private readonly FileInfo _fileInfo;
 
-        public FileInfoWrapper()
-        {
+        #region ~~~ Constructors ~~~
 
-        }
+        public FileInfoSerializable() { }
+
+        public FileInfoSerializable(FileInfo FileInfo) { _fileInfo = FileInfo; }
+
+        #endregion
+
+
+        #region ~~~ Properties ~~~
+
+        public string Name { get { return _fileInfo.Name; } set { } }
+
+        public string FullName { get { return _fileInfo.FullName; } set { } }
+
+        public long Length { get { return _fileInfo.Length; } set { } }
+
+        public string Extension { get { return _fileInfo.Extension; } set { } }
+
+        public DateTime LastWriteTime { get { return _fileInfo.LastWriteTime; } set { } }
+
+        public string DirectoryName { get { return _fileInfo.DirectoryName; } set { } }
+
+        #endregion
     }
 }

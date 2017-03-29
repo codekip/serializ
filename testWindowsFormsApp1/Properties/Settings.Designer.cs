@@ -25,7 +25,7 @@ namespace testWindowsFormsApp1.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("L:\\02 Technical Database")]
+        [global::System.Configuration.DefaultSettingValueAttribute("L:\\02 Technical Database\\")]
         public string TDBpath {
             get {
                 return ((string)(this["TDBpath"]));
