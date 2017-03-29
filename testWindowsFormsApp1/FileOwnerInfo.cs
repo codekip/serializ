@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
+using System;
 using System.IO;
 using System.Security.Principal;
 
@@ -19,12 +21,31 @@ namespace testWindowsFormsApp1
                 System.Security.AccessControl.FileSecurity fs = f.GetAccessControl();
                 // NTAccount owner = (NTAccount)ds.GetOwner(typeof(NTAccount));
                 NTAccount owner = (NTAccount)fs.GetOwner(typeof(NTAccount));
-                return owner.ToString();
+                return owner.ToString().Split('\\')[1]; //To remove "EU\ in EU\sawe.nk"
             }
             catch (Exception ex)
             {
                 return ex.Message;
             }
+        }
+
+        public static string LastSavedBy(string path)
+        {
+            string lastSavedBy = null;
+            using (var so = ShellObject.FromParsingName(path))
+            {
+                var lastAuthorProperty = so.Properties.GetProperty(SystemProperties.System.Document.LastAuthor);
+                if (lastAuthorProperty != null)
+                {
+                    var lastAuthor = lastAuthorProperty.ValueAsObject;
+                    if (lastAuthor != null)
+                    {
+                        lastSavedBy = lastAuthor.ToString();
+                    }
+                }
+            }
+
+            return lastSavedBy;
         }
     }
 }
