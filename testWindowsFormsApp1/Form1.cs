@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
@@ -48,22 +47,30 @@ namespace testWindowsFormsApp1
         {
             XDocument docs = XDocument.Load(Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + xmlfile);
 
-            var doc = from d in docs.Descendants("FileInfoWrapper")
-                          //where d.Element("Extension").Value != ".xlsx"
-                      select new Show
-                      {
-                          Name = (string)d.Element("Name"),
-                          FullName = (string)d.Element("FullName"),
-                          Size = (int)d.Element("Length"),
-                          Extension = (string)d.Element("Extension"),
-                          LastSaved = (DateTime)d.Element("LastWriteTime"),
-                      };
+            var dd = from d in docs.Descendants("FileInfoWrapper")
+                     where d.Element("Extension").Value == ".xlsm"
 
-             var source = new BindingSource();
-             source.DataSource = doc.ToList();
-           
+                     select new Show
+                     {
+                         Name = (string)d.Element("Name"),
+                         FullName = (string)d.Element("FullName"),
+                         Size = (int)d.Element("Length"),
+                         Extension = (string)d.Element("Extension"),
+                         LastSaved = (DateTime)d.Element("LastWriteTime"),
+                     };
+
+            var doc = dd
+                .GroupBy(d => new { d.Name, d.LastSaved })
+                .OrderBy(d => d.Key.Name)
+                .ThenBy(d => d.Key.LastSaved)
+                .Select(d => new { Nm = d.Key.Name, ls = d.Key.LastSaved, thecount = d.Count() });
+
+            var source = new BindingSource();
+            source.DataSource = doc.ToList();
+
             dataGridView1.DataSource = source;
-          
+
+            MessageBox.Show(doc.Count().ToString());
         }
 
         private void button3_Click(object sender, System.EventArgs e)
@@ -77,7 +84,7 @@ namespace testWindowsFormsApp1
     {
         public string Name { get; set; }
         public string FullName { get; set; }
-        public int  Size { get; set; }
+        public int Size { get; set; }
         public string Extension { get; set; }
         public DateTime LastSaved { get; set; }
 
