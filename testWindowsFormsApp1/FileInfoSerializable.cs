@@ -4,16 +4,16 @@ using System.IO;
 namespace testWindowsFormsApp1
 {
     [Serializable]
-    public class FileInfoSerializable
+    public class FileInfoWrapper
     {
 
         private readonly FileInfo _fileInfo;
 
         #region ~~~ Constructors ~~~
 
-        public FileInfoSerializable() { }
+        public FileInfoWrapper() { }
 
-        public FileInfoSerializable(FileInfo FileInfo) { _fileInfo = FileInfo; }
+        public FileInfoWrapper(FileInfo FileInfo) { _fileInfo = FileInfo; }
 
         #endregion
 

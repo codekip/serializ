@@ -6,14 +6,14 @@ namespace testWindowsFormsApp1
     [Serializable]
     public class FileList
     {
-        public List<FileInfoSerializable> filez { get; set; }
+        public List<FileInfoWrapper> filez { get; set; }
 
         public FileList()
         {
-            filez = new List<FileInfoSerializable>();
+            filez = new List<FileInfoWrapper>();
         }
 
-        public void Add(FileInfoSerializable m)
+        public void Add(FileInfoWrapper m)
         {
             filez.Add(m);
         }

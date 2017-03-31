@@ -7,9 +7,9 @@ namespace testWindowsFormsApp1
 {
     public static class FileGetter
     {
-        public static IEnumerable<FileInfo> FileInfoAllFiles()
+        public static IEnumerable<FileInfo> FileInfoAllFiles(string path)
         {
-            return new DirectoryInfo(Settings.Default["TDBpath"].ToString()).EnumerateFiles("*.*", SearchOption.AllDirectories);
+            return new DirectoryInfo(path).EnumerateFiles("*.*", SearchOption.AllDirectories);
         }
 
 
