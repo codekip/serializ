@@ -55,9 +55,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\testWindowsFormsApp1\testWindowsFormsApp1.csproj">
+    <ProjectReference Include="..\testWindowsFormsApp1\Winform.csproj">
       <Project>{0c89c1a9-173c-4b27-aff7-7ef084b370cb}</Project>
-      <Name>testWindowsFormsApp1</Name>
+      <Name>Winform</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

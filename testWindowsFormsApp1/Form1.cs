@@ -48,8 +48,7 @@ namespace testWindowsFormsApp1
             XDocument docs = XDocument.Load(Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + xmlfile);
 
             var dd = from d in docs.Descendants("FileInfoWrapper")
-                     where d.Element("Extension").Value == ".xlsm"
-
+                     //where d.Element("Extension").Value == ".xlsm"
                      select new Show
                      {
                          Name = (string)d.Element("Name"),

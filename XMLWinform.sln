@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testWindowsFormsApp1", "testWindowsFormsApp1\testWindowsFormsApp1.csproj", "{0C89C1A9-173C-4B27-AFF7-7EF084B370CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Winform", "testWindowsFormsApp1\Winform.csproj", "{0C89C1A9-173C-4B27-AFF7-7EF084B370CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{CCD7BC51-7FAF-4C70-904E-1FB75BDC6CD0}"
 EndProject
